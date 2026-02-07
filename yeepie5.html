@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rose Surprise</title>
+
+<style>
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: black;
+  font-family: Arial, sans-serif;
+}
+
+/* Start screen */
+#startScreen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+#startBtn {
+  padding: 16px 34px;
+  font-size: 18px;
+  border-radius: 40px;
+  border: none;
+  background: #ff69b4;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255,105,180,.6);
+  transition: transform .3s;
+}
+
+#startBtn:hover {
+  transform: scale(1.1);
+}
+
+/* Scene */
+#scene {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background: black;
+}
+
+/* Rose */
+#rose {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.3);
+  width: 300px;
+  animation: dropZoom 3s ease forwards;
+}
+
+/* Floating text */
+#message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #EDEADE;
+  font-size: clamp(22px, 4vw, 48px);
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+  animation-delay: 2.5s;
+  text-shadow: 0 0 12px rgba(255,105,180,.7);
+}
+
+/* Pink href button */
+#pinkBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #ff69b4;
+  color: white;
+  text-decoration: none;
+  padding: 16px 28px;
+  border-radius: 50px;
+  font-size: 18px;
+  box-shadow: 0 8px 20px rgba(255,105,180,.5);
+  transition: all .3s ease;
+  display: none;
+}
+
+#pinkBtn:hover {
+  background: #ff4fa3;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(255,105,180,.7);
+}
+
+/* Animations */
+@keyframes dropZoom {
+  0% {
+    top: -100%;
+    transform: translateX(-50%) scale(0.3);
+  }
+  70% {
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Start -->
+<div id="startScreen">
+  <button id="startBtn">can u turn on the lights again for me kuchuu???:333 plss plsss</button>
+</div>
+
+<!-- Scene -->
+<div id="scene">
+
+  <!-- Rose image (replace URL if you want) -->
+  <img
+    id="rose"
+    src="https://media.tenor.com/hnHxY3yknXsAAAAM/flower-hello-kitty.gif"
+    alt="Rose"
+  >
+
+  <!-- Message -->
+  <div id="message">
+    here's a rose for myy bebuuu:33
+    pupupuu pipipiii yipipipi 
+  </div>
+
+  <!-- Pink href button -->
+  <a href="yeepie6.html" id="pinkBtn">
+    cann uu press heree againnn plsss plssss :333
+  </a>
+
+</div>
+
+<script>
+const startBtn = document.getElementById("startBtn");
+const startScreen = document.getElementById("startScreen");
+const scene = document.getElementById("scene");
+const pinkBtn = document.getElementById("pinkBtn");
+
+startBtn.onclick = () => {
+  startScreen.style.display = "none";
+  scene.style.display = "block";
+
+  // show href button after animation
+  setTimeout(() => {
+    pinkBtn.style.display = "inline-block";
+  }, 3500);
+};
+</script>
+
+</body>
+</html>

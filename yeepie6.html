@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Starry Message</title>
+
+<style>
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(ellipse at bottom, #0b0f2a 0%, #050614 70%);
+}
+
+/* Star background layers */
+.stars, .stars2, .stars3 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  animation: drift 80s linear infinite;
+}
+
+.stars {
+  box-shadow:
+    10vw 20vh #fff, 30vw 60vh #fff, 50vw 30vh #fff,
+    70vw 80vh #fff, 90vw 10vh #fff;
+}
+
+.stars2 {
+  box-shadow:
+    20vw 40vh #fff, 40vw 10vh #fff,
+    60vw 70vh #fff, 80vw 50vh #fff;
+  animation-duration: 120s;
+  opacity: .7;
+}
+
+.stars3 {
+  box-shadow:
+    15vw 75vh #fff, 55vw 15vh #fff, 85vw 35vh #fff;
+  animation-duration: 160s;
+  opacity: .5;
+}
+
+@keyframes drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100vh); }
+}
+
+/* Center message */
+.center {
+  position: relative;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 20px;
+}
+
+.message-box {
+  width: min(85%, 650px);
+  padding: 24px;
+  border-radius: 22px;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  color: #ffb6d9;
+  font-size: 18px;
+  line-height: 1.6;
+  border: 1px solid rgba(255,105,180,.4);
+  box-shadow: 0 0 25px rgba(255,105,180,.25);
+  text-align: center;
+}
+
+/* GIF section */
+.gif-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.gif-container img {
+  max-width: 180px;
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(255,105,180,.35);
+}
+
+/* Touch stars */
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 14px white;
+  animation: pop 1s ease-out forwards;
+  pointer-events: none;
+  z-index: 4;
+}
+
+@keyframes pop {
+  from { transform: scale(0); opacity: 1; }
+  to { transform: scale(2.5); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Stars -->
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+
+<!-- Message -->
+<div class="center">
+  <div class="message-box">
+    HEMLOOOO POKUUU POKUUU YEEPIEE:33<br><br>
+    SOOOOO HAPPYYY ROSEEE DAYYY BABYYYYY KEMONNN LAGLOOO HUUU AMARR SURPRISE IM DOING THESE FRM ABT 3 HRS DEKHOOO HUU THANKU BOLO 😾 ACCHA SOOO BABYYYYY SORRY :(( AMI TOMAKE ROSE DITE PARLAM NA IRL COZ AMARO BKARDS ACHE :(( SOORRYYYY SOOO AMI ETA BANALAMMM JATE AMAR KUCHUPUCHUU BACCHUU BAJEE FEEL NAAA KREE YEEPIEEEB MAMMUUU AMALL<br><br>
+    sooo BABYYY THANKK YOUUU FORRR CLICKING EVERY BUTTON I'M LUVVV YUU MUSHHHHH MUWAHHHHHHH MUWAHHhh ACCHA BAII OTEYYY???
+  </div>
+</div>
+
+<!-- GIF -->
+<div class="gif-container">
+  <img src="https://64.media.tumblr.com/2c73aa4bac5f1b5dfa48d5aec520d448/tumblr_puolyoMmKb1y8acfqo6_400.gif" alt="Cute gif">
+</div>
+
+<script>
+const body = document.body;
+
+function createStar(x, y) {
+  const star = document.createElement("div");
+  star.className = "spark";
+  star.style.left = x + "px";
+  star.style.top = y + "px";
+  body.appendChild(star);
+  setTimeout(() => star.remove(), 1000);
+}
+
+body.addEventListener("click", e => {
+  createStar(e.clientX, e.clientY);
+});
+
+body.addEventListener("touchstart", e => {
+  const t = e.touches[0];
+  createStar(t.clientX, t.clientY);
+});
+</script>
+
+</body>
+</html>

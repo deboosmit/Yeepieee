@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Star Reveal</title>
+
+<style>
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: black;
+}
+
+/* Intro */
+#intro {
+  position: absolute;
+  inset: 0;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+#startBtn {
+  padding: 16px 32px;
+  font-size: 18px;
+  border-radius: 40px;
+  border: none;
+  background: #ff69b4;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255,105,180,.6);
+}
+
+/* Star scene */
+#scene {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at bottom, #0b0f2a 0%, #050614 70%);
+  display: none;
+  overflow: hidden;
+}
+
+/* Floating text */
+.center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.floating-text {
+  color: #ff69b4;
+  font-size: clamp(22px, 4vw, 48px);
+  text-shadow: 0 0 12px rgba(255,105,180,.7);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
+  100% { transform: translateY(0); }
+}
+
+/* SAME floating pink button */
+.floating-pink-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #ff69b4;
+  color: white;
+  text-decoration: none;
+  padding: 16px 26px;
+  border-radius: 50px;
+  font-size: 18px;
+  box-shadow: 0 8px 20px rgba(255,105,180,.5);
+  transition: all .3s ease;
+  z-index: 3;
+  display: none;
+}
+
+.floating-pink-btn:hover {
+  background: #ff4fa3;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(255,105,180,.7);
+}
+
+/* Touch stars */
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 12px white;
+  animation: pop 1s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes pop {
+  from { transform: scale(0); opacity: 1; }
+  to { transform: scale(2); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Intro -->
+<div id="intro">
+  <button id="startBtn">can u turn on the lights for me bebuuu??:333(and also touch the screen after turning on the lights pls plssss)</button>
+</div>
+
+<!-- Star Scene -->
+<div id="scene">
+  <div class="center">
+    <div class="floating-text">
+      seee babyyyy your touch can make everything glow your touch is sooo magicalll :333
+    </div>
+  </div>
+
+  <!-- SAME FLOATING PINK BUTTON -->
+  <a href="yeepie5.html" class="floating-pink-btn" id="pinkBtn">
+    can u press it again forrr meee??:3333
+  </a>
+</div>
+
+<script>
+const intro = document.getElementById("intro");
+const scene = document.getElementById("scene");
+const pinkBtn = document.getElementById("pinkBtn");
+
+document.getElementById("startBtn").onclick = () => {
+  intro.style.display = "none";
+  scene.style.display = "block";
+  pinkBtn.style.display = "inline-block";
+};
+
+// Touch / click star effect
+function createStar(x, y) {
+  const star = document.createElement("div");
+  star.className = "spark";
+  star.style.left = x + "px";
+  star.style.top = y + "px";
+  scene.appendChild(star);
+  setTimeout(() => star.remove(), 1000);
+}
+
+scene.addEventListener("click", e => {
+  createStar(e.clientX, e.clientY);
+});
+
+scene.addEventListener("touchstart", e => {
+  const t = e.touches[0];
+  createStar(t.clientX, t.clientY);
+});
+</script>
+
+</body>
+</html>
